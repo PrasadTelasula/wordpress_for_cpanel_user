@@ -1,0 +1,18 @@
+---
+  - name: Check Cpanel user exists or not
+    command: "id {{ cpanel_user }}"
+    ignore_errors: yes
+    register: user_existence 
+    
+  - name: Create cpanel user 
+    command: "/scripts/wwwacct {{ cpanel_user_domain }} {{ cpanel_user }} {{ cpanel_user_passwd }}"
+    when: user_existence.rc == 1
+ 
+  - name: Create database for cpanel user
+    command: "uapi --user={{ cpanel_user }} Mysql create_database name={{ wordpress_db }}"
+
+  - name: Create database user 
+    command: "uapi --user={{ cpanel_user }} Mysql create_user name={{ wordpress_db_user }} password={{ wordpress_db_passwd }}"
+
+  - name: Grant Permissions
+    command: "uapi --user={{ cpanel_user }} Mysql set_privileges_on_database user={{ wordpress_db_user }} database={{ wordpress_db }} privileges=DELETE,UPDATE,CREATE,ALTER"

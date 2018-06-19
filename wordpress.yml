@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: true
+  gather_facts: true
+  
+  roles:
+  - install_wordpress_cpanel_user
