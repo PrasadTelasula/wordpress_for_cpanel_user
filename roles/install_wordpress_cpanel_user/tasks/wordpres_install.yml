@@ -20,8 +20,8 @@
        remote_src: yes
 
   - name: Copy config file
-    templates:
+    template:
       src: wp-config.php.j2
-      dest: "{{ wordpress_install_path }}"
+      dest: "{{ wordpress_install_path }}/wp-config.php"
 
     
