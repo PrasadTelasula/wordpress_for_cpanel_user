@@ -1,11 +1,11 @@
 ---
 cpanel_user: prasad
 cpanel_user_passwd: 1q2w3e4r5t
-wordpress_db: {{ cpanel_user }}_db
-wordpress_db_user: {{ cpanel_user }}_admin
+wordpress_db: "{{ cpanel_user }}_db"
+wordpress_db_user: "{{ cpanel_user }}_admin"
 wordpress_db_passwd: wordpress_db_passwd
 wordpress_db_host: 127.0.0.1:3306
-wordpress_table_prefix: {{ cpanel_user }}_
+wordpress_table_prefix: "{{ cpanel_user }}_"
 
 wordpress_install_path: "/home/{{ cpanel_user }}/public_html/"
 wordpress_download_url: https://wordpress.org/latest.tar.gz
